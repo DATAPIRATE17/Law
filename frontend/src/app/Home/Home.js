@@ -21,10 +21,10 @@ const Home = () => {
     <div className="home">
       <section className={`showcase ${showLoginForm || showRegisterForm ? 'active' : ''}`}>
         <header>
-          <h2 className="logo">
+          <h2 className="logo" id="data">
             SHE-GUARDIANS
           </h2>
-          <div className="toggle" onClick={toggleLoginForm}></div>
+          <div className="ggle" onClick={toggleLoginForm}></div>
         </header>
         <div className="overlay"></div>
         <div className="text">
