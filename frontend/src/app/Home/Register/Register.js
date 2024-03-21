@@ -13,15 +13,6 @@ const RegisterForm = ({ onRegister }) => {
   const [showPassword, setShowPassword] = useState(false);
   const [successMessage, setSuccessMessage] = useState('');
 
-  const [showLoginForm, setShowLoginForm] = useState(false);
-  const [showRegisterForm, setShowRegisterForm] = useState(false);
-
-  const toggleLoginForm = () => {
-    setShowLoginForm(!showLoginForm);
-    setShowRegisterForm(false);
-  };
-
-
   const handleRegister = async (e) => {
     e.preventDefault();
 
@@ -38,6 +29,7 @@ const RegisterForm = ({ onRegister }) => {
         aadhar,
         password,
       });
+      console.log(response.data); // Output the response from the server
       // Inside your try block after successful registration
       setSuccessMessage('Registration successful!');
       setTimeout(() => {
@@ -91,7 +83,6 @@ const RegisterForm = ({ onRegister }) => {
           </span>
         </div>
         <button type="submit" className="login-button">Register</button>
-        
         {error && <p className="error-message">{error}</p>}
         {successMessage && <p className="success-message">{successMessage}</p>}
       </form>

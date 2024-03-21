@@ -22,7 +22,7 @@ const Home = () => {
       <section className={`showcase ${showLoginForm || showRegisterForm ? 'active' : ''}`}>
         <header>
           <h2 className="logo">
-            <a href="#" id="data">SHE-GUARDIANS</a>
+            SHE-GUARDIANS
           </h2>
           <div className="toggle" onClick={toggleLoginForm}></div>
         </header>

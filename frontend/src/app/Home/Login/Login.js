@@ -12,17 +12,6 @@ const Login = ({ onLogin }) => {
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  const [showLoginForm, setShowLoginForm] = useState(false);
-  const [showRegisterForm, setShowRegisterForm] = useState(false);
-
- 
-
-  const toggleRegisterForm = () => {
-    setShowRegisterForm(!showRegisterForm);
-    setShowLoginForm(false);
-  };
-
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -66,7 +55,6 @@ const Login = ({ onLogin }) => {
         <button type="submit" className="login-button">
           Login
         </button>
-        
         {error && <p className="error-message">{error}</p>}
       </form>
     </div>
