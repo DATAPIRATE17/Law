@@ -1,0 +1,34 @@
+/* MainMenu.css */
+
+/* Adjust the styles as needed for your MainMenu component */
+
+.main-menu-container {
+    background-color: #04021e;
+    color: white;
+    padding: 20px;
+  }
+  
+  .main-menu-container h1 {
+    font-size: 2em;
+    margin-bottom: 20px;
+  }
+  
+  .main-menu-container p {
+    font-size: 1.2em;
+  }
+  
+  .main-menu-container button {
+    background-color: #bd6a9d;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .main-menu-container button:hover {
+    background-color: #a04a7f;
+  }
+  
