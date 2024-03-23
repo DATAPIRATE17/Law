@@ -3,13 +3,16 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const authRouter = require('./routes/auth');
+const placesRouter=require('./routes/places');
+const bookingRouter = require('./routes/booking');
+
 const cors = require('cors'); // Import the cors package
 const app = express(); // Define app here
 require('dotenv').config();
 console.log(process.env.DB);
 
 const PORT = 8080;
-const DB = 'mongodb+srv://hariprasadrajan2003:ca9FlUfv7cFneTq8@cluster0.ugr8oj0.mongodb.net/SuperData';
+const DB = 'mongodb+srv://hariprasadrajan2003:ca9FlUfv7cFneTq8@cluster0.ugr8oj0.mongodb.net/test';
 const FRONTEND_URL = 'http://localhost:3000'
 
 // Use the cors middleware
@@ -25,6 +28,9 @@ app.use(cookieParser());
 
 // Routes
 app.use('/api', authRouter);
+app.use('/api',placesRouter);
+app.use('/api', bookingRouter);
+
 
 // MongoDB Connection
 mongoose.connect(DB, {

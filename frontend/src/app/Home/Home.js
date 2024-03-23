@@ -3,7 +3,7 @@ import Login from './Login/Login'; // Import Login component
 import Register from './Register/Register'; // Import Register component
 import './Home.css';
 
-const Home = () => {
+const Home = ({ setToken }) => { // Pass setToken as a prop
   const [showLoginForm, setShowLoginForm] = useState(false);
   const [showRegisterForm, setShowRegisterForm] = useState(false);
 
@@ -48,7 +48,7 @@ const Home = () => {
 
       {showLoginForm && (
         <div className="login-form-container animate__animated animate__slideInLeft">
-          <Login />
+          <Login setToken={setToken} /> {/* Pass setToken as a prop */}
         </div>
       )}
 

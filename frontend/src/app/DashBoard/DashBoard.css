@@ -1,0 +1,99 @@
+/* Dashboard.css */
+
+.dashboard-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .dashboard-heading {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .user-info {
+    margin-bottom: 20px;
+  }
+  
+  .user-info p {
+    margin: 5px 0;
+  }
+  
+  /* .places-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .place-item {
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+    padding: 10px;
+  }
+   */
+
+   .places-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap; /* Allow items to wrap to the next line */
+  }
+  
+  .place-item {
+    border: 1px solid #ccc;
+    margin: 10px;
+    padding: 10px;
+    flex: 1 0 200px; /* Adjust the width of each item */
+    max-width: 300px; /* Limit the maximum width of each item */
+  }
+  
+  .place-item h4 {
+    margin: 0;
+  }
+  
+  .place-item p {
+    margin: 5px 0;
+  }
+  
+  .booking-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .booking-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .bookings-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .booking-item {
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+    padding: 10px;
+  }
+  
+  .booking-item p {
+    margin: 5px 0;
+  }
+  .logout-button {
+    position: fixed; /* Or absolute, depending on your layout */
+    top: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    background-color: #f44336; /* Red color for logout button */
+    color: white;
+    border: none;
+    cursor: pointer;
+    z-index: 1000; /* Ensure it's above other elements */
+  }
+  
+  .logout-button:hover {
+    background-color: #d32f2f; /* Darker shade on hover */
+  }

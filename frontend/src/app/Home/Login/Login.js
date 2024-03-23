@@ -1,26 +1,49 @@
 import React, { useState } from 'react';
 import { FaUser, FaLock } from 'react-icons/fa';
 import { RiEyeFill, RiEyeOffFill } from 'react-icons/ri';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 
-const Login = ({ onLogin }) => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+const Login = ({ setToken }) => {
+
+  const [formData, setFormData] = useState({ email: '', password: '' });
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
+
+  const handleChange = (e) => { 
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:8080/api/login', { email: username, password });
-      localStorage.setItem('token', response.data.token);
-      localStorage.setItem('username', username);
-      navigate('/MainMenu'); // Redirect to MainMenu after successful login
+      const response = await fetch('http://localhost:8080/api/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+        credentials: 'include', // Include credentials to send cookies
+      });
+
+      const data = await response.json();
+      if (!response.ok) {
+        throw new Error(data.message);
+      }
+      setToken(data.token); // Set token in parent component
+      console.log('Login successful');
+      console.log(data.userType)
+      if(data.userType === 'staff'){
+        console.log('Login successful admin');
+        navigate('/sdashboard'); // Redirect to dashboard after successful login
+      }
+      else
+        navigate('/dashboard'); // Redirect to dashboard after successful login
+
     } catch (error) {
-      console.error('Login failed:', error.response);
+      console.error('Login failed:', error.message);
       setError('Invalid email or password');
     }
   };
@@ -36,7 +59,10 @@ const Login = ({ onLogin }) => {
           <span className="input-icon">
             <FaUser />
           </span>
-          <input type="text" placeholder="Email" value={username} onChange={(e) => setUsername(e.target.value)} />
+          <input type="email" 
+          placeholder="Email" 
+          name="email"
+          onChange={handleChange} required />
         </div>
         <div className="input-group">
           <span className="input-icon">
@@ -45,8 +71,8 @@ const Login = ({ onLogin }) => {
           <input
             type={showPassword ? 'text' : 'password'}
             placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            name="password"
+            onChange={handleChange} required
           />
           <span className="password-icon" onClick={togglePasswordVisibility}>
             {showPassword ? <RiEyeFill /> : <RiEyeOffFill />}

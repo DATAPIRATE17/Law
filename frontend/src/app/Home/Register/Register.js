@@ -4,7 +4,7 @@ import { FaUser, FaEnvelope, FaPhone, FaIdCard } from 'react-icons/fa';
 import { RiLockPasswordLine, RiEyeFill, RiEyeOffFill } from 'react-icons/ri';
 
 const RegisterForm = ({ onRegister }) => {
-  const [username, setUsername] = useState('');
+  const [name, setName] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
@@ -16,14 +16,14 @@ const RegisterForm = ({ onRegister }) => {
   const handleRegister = async (e) => {
     e.preventDefault();
 
-    if (!username || !password || !email || !phone || !aadhar) {
+    if (!name || !password || !email || !phone || !aadhar) {
       setError('All fields are required');
       return;
     }
 
     try {
       const response = await axios.post('http://localhost:8080/api/signup', {
-        username,
+        name,
         email,
         phone,
         aadhar,
@@ -33,7 +33,7 @@ const RegisterForm = ({ onRegister }) => {
       // Inside your try block after successful registration
       setSuccessMessage('Registration successful!');
       setTimeout(() => {
-      setUsername('');
+      setName('');
       setPassword('');
       setEmail('');
       setPhone('');
@@ -56,7 +56,7 @@ const RegisterForm = ({ onRegister }) => {
       <form onSubmit={handleRegister} className="login-form login-box">
         <div className="input-group">
           <FaUser className="input-icon" />
-          <input type="text" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} />
+          <input type="text" placeholder="Name" value={name} onChange={(e) => setName(e.target.value)} />
         </div>
         <div className="input-group">
           <FaEnvelope className="input-icon" />

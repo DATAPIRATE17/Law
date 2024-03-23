@@ -1,20 +1,15 @@
 const mongoose = require("mongoose");
 
 const userSchema = mongoose.Schema({
-  username: {
-    type: String,
+  name: {
     required: true,
+    type: String,
     trim: true,
-  },
-  password: {
-    type: String,
-    required: true,
   },
   email: {
-    type: String,
     required: true,
+    type: String,
     trim: true,
-    unique: true,
     validate: {
       validator: (value) => {
         const re =
@@ -24,26 +19,29 @@ const userSchema = mongoose.Schema({
       message: "Please enter a valid email address",
     },
   },
-  aadhar: {
+  aadhar:{
     type: String,
-    required: true,
     trim: true,
-    unique: true,
     validate: {
       validator: (value) => {
-        const re = /^\d{12}$/;
+        const re =
+          /^\d{12}$/;
         return value.match(re);
       },
-      message: "Please enter a valid Aadhar number",
+      message: "Please enter a valid aadhar number",
     },
   },
   phone: {
-    type: String,
     required: true,
+    type: String,
+  },
+  password: {
+    required: true,
+    type: String,
   },
   userType: {
-    type: String,
     required: true,
+    type: String,
     default: "user"
   },
 });
