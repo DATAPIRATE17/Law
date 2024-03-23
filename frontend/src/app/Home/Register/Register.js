@@ -3,7 +3,7 @@ import axios from 'axios';
 import { FaUser, FaEnvelope, FaPhone, FaIdCard } from 'react-icons/fa';
 import { RiLockPasswordLine, RiEyeFill, RiEyeOffFill } from 'react-icons/ri';
 
-const RegisterForm = ({ onRegister }) => {
+const RegisterForm = ({ toggleRegisterForm }) => { // Receive toggleRegisterForm as a prop
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
@@ -33,12 +33,12 @@ const RegisterForm = ({ onRegister }) => {
       // Inside your try block after successful registration
       setSuccessMessage('Registration successful!');
       setTimeout(() => {
-      setName('');
-      setPassword('');
-      setEmail('');
-      setPhone('');
-      setAadhar('');
-          // Optionally, redirect the user or perform other actions here
+        setName('');
+        setPassword('');
+        setEmail('');
+        setPhone('');
+        setAadhar('');
+        // Optionally, redirect the user or perform other actions here
       }, 3000); // 3000 milliseconds = 3 seconds delay
     } catch (error) {
       console.error('Registration failed:', error.response.data);
@@ -85,6 +85,7 @@ const RegisterForm = ({ onRegister }) => {
         <button type="submit" className="login-button">Register</button>
         {error && <p className="error-message">{error}</p>}
         {successMessage && <p className="success-message">{successMessage}</p>}
+        <button className="close-btn" onClick={toggleRegisterForm}><span>&gt;</span></button> {/* Close button with ">" icon */}
       </form>
     </div>
   );

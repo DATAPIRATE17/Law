@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 
-const Login = ({ setToken }) => {
+const Login = ({ setToken, toggleLoginForm }) => { // Receive toggleLoginForm as a prop
 
   const [formData, setFormData] = useState({ email: '', password: '' });
   const [showPassword, setShowPassword] = useState(false);
@@ -82,6 +82,7 @@ const Login = ({ setToken }) => {
           Login
         </button>
         {error && <p className="error-message">{error}</p>}
+        <button className="close-btn" onClick={toggleLoginForm}><span>&gt;</span></button> {/* Close button with ">" icon */}
       </form>
     </div>
   );

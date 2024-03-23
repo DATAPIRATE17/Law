@@ -48,13 +48,13 @@ const Home = ({ setToken }) => { // Pass setToken as a prop
 
       {showLoginForm && (
         <div className="login-form-container animate__animated animate__slideInLeft">
-          <Login setToken={setToken} /> {/* Pass setToken as a prop */}
+          <Login setToken={setToken} toggleLoginForm={toggleLoginForm} /> {/* Pass toggleLoginForm as a prop */}
         </div>
       )}
 
       {showRegisterForm && (
         <div className="register-form-container animate__animated animate__slideInLeft">
-          <Register />
+          <Register toggleRegisterForm={toggleRegisterForm} /> {/* Pass toggleRegisterForm as a prop */}
         </div>
       )}
     </div>

@@ -97,3 +97,173 @@
   .logout-button:hover {
     background-color: #d32f2f; /* Darker shade on hover */
   }
+
+  .places-list {
+    display: flex;
+    flex-wrap: wrap; /* Allow cards to wrap to the next row */
+    gap: 20px; /* Adjust the gap between cards as needed */
+    justify-content: center; /* Center the cards within the container */
+  }
+  
+  .places-list li {
+    flex: 1; /* Each item can grow */
+    min-width: 250px; /* Minimum width of each item, adjust as needed */
+    list-style: none; /* Remove default list styling */
+  }
+  
+  .places-list li div {
+    width: 100%; /* Ensure the content takes up the full width */
+    padding: 1rem; /* Add padding around each card */
+    background: linear-gradient(1deg, #760340 0%, #302663 59.17%, #206A7C 100%);    
+        border-radius: 0.5rem; /* Rounded corners for each card */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Shadow effect for each card */
+  }
+  
+  
+  .places-list li div figure img {
+    width: 100%; /* Ensure the image covers the figure element */
+    height: auto; /* Maintain aspect ratio */
+    object-fit: cover; /* Cover the figure area without stretching */
+  }
+  
+  .places-list li div h2 {
+    margin: 0.5rem 0; /* Adjust title margin */
+    font-size: 1.25rem; /* Adjust font size */
+    font-weight: bold; /* Adjust font weight */
+    color: rgb(255, 255, 255);
+  }
+  
+  .places-list li div p {
+    margin: 0.25rem 0; /* Adjust paragraph margin */
+  }
+  
+  .places-list li div .card-actions {
+    display: flex;
+    justify-content: flex-end; /* Align button to the end */
+  }
+  
+  .places-list li div button {
+    background-color: #bd6a9d; /* Primary blue */
+    color: white; /* Text color */
+    padding: 0.5rem 1rem; /* Padding around the text */
+    border: none; /* No border */
+    border-radius: 0.25rem; /* Slightly rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+  }
+  
+  .places-list li div button:hover {
+    background-color: #191550;  /* Darker shade on hover */
+  }
+  
+  .dash{
+  color: rgb(255, 255, 255);
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: 800;
+
+  }
+  .card {
+  max-width: 290px; /* w-96 equivalent to 24rem or 384px */
+  background-color: #f9fafb; /* bg-base-100 equivalent */
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* shadow-xl equivalent */
+  border-radius: 0.5rem; /* Optional: if you want rounded corners */
+  overflow: hidden; /* Ensures the content respects border-radius */
+  left: 110px;
+  top: 20px;
+margin-bottom: 55px;
+}
+
+
+.card figure img {
+  width: 100%; /* Ensure the image covers the figure element */
+  height: auto; /* Maintain aspect ratio */
+  object-fit: cover; /* Cover the figure area without stretching */
+}
+
+.card-body {
+  padding: 1rem; /* Adjust padding as needed */
+  display: flex; /* Apply Flexbox */
+  flex-direction: column; /* Stack children vertically */
+  justify-content: center; /* Center children vertically in the container */
+  align-items: center; /* Center children horizontally in the container */
+}
+
+.card-title {
+  margin: 0.5rem 0; /* Adjust title margin */
+  font-size: 1.25rem; /* Adjust font size */
+  font-weight: bold; /* Adjust font weight */
+  text-align: center; /* Ensure the title is centered */
+}
+
+.card-actions {
+  display: flex; /* Apply Flexbox */
+  justify-content: flex-end; /* Aligns button to the end */
+  padding: 1rem 0; /* Adjust padding as needed */
+  width: 100%; /* Ensure the actions take up the full width of the card-body */
+}
+
+#place{
+  text-align: center;
+  margin-top: 20px;
+}
+
+.btn-primary {
+  background-color: #3b82f6; /* Primary blue */
+  color: white; /* Text color */
+  padding: 0.5rem 1rem; /* Padding around the text */
+  border: none; /* No border */
+  border-radius: 0.25rem; /* Slightly rounded corners */
+  cursor: pointer; /* Pointer cursor on hover */
+}
+
+.btn-primary:hover {
+  background-color: #2563eb; /* Darker shade on hover */
+}
+
+.header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #333;
+  color: white;
+}
+
+.welcome-profile-container {
+  position: relative; /* Ensure the dropdown menu is positioned relative to this container */
+  display: inline-block; /* Keep the welcome message and profile icon in line */
+}
+
+.welcome-text {
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.profile-icon {
+  cursor: pointer;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: calc(100% + 10px); /* Position the dropdown menu below the welcome-profile container */
+  right: 0;
+  background-color: transparent;
+  border: 1px solid #ccc;
+  padding: 10px;
+  z-index: 1000;
+  display: none; /* Initially hide the dropdown menu */
+}
+
+/* Show dropdown menu when hovering over the welcome-profile container */
+.welcome-profile-container:hover .dropdown-menu {
+  display: block;
+}
+
+.dropdown-menu button {
+  display: block;
+  width: 100%;
+  padding: 5px;
+  margin-bottom: 5px;
+  background-color: #bd6a9d; 
+  border: none;
+  cursor: pointer;
+}

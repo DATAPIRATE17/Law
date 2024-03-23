@@ -4,6 +4,7 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/user');
 const checkAuth = require('../middleware/check-auth');
 const router = express.Router();
+
 router.get('/protected', checkAuth,async (req, res) => {
     const userData = await User.findById(req.userData.userId).select('-password');
 res.json({ message: 'You are authenticated', userData });
