@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { FaUser, FaEnvelope, FaPhone, FaIdCard } from 'react-icons/fa';
 import { RiLockPasswordLine, RiEyeFill, RiEyeOffFill } from 'react-icons/ri';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faAnglesLeft } from '@fortawesome/free-solid-svg-icons';
 
 const RegisterForm = ({ toggleRegisterForm }) => { // Receive toggleRegisterForm as a prop
   const [name, setName] = useState('');
@@ -85,8 +87,10 @@ const RegisterForm = ({ toggleRegisterForm }) => { // Receive toggleRegisterForm
         <button type="submit" className="login-button">Register</button>
         {error && <p className="error-message">{error}</p>}
         {successMessage && <p className="success-message">{successMessage}</p>}
-        <button className="close-btn" onClick={toggleRegisterForm}><span>&gt;</span></button> {/* Close button with ">" icon */}
-      </form>
+        <button className="close-btn" onClick={toggleRegisterForm}>
+  <FontAwesomeIcon icon={faAnglesLeft} />
+</button>
+</form>
     </div>
   );
 };

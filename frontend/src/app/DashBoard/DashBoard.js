@@ -36,7 +36,7 @@ const Dashboard = ({ token }) => {
   const [showBookingForm, setShowBookingForm] = useState(false);
   const [selectedPlace, setSelectedPlace] = useState(null);
   const [showPlaces, setShowPlaces] = useState(true);
-  const [usrDisplay, setUsrDisplay] = useState(true);
+  //const [usrDisplay, setUsrDisplay] = useState(true);
   const [showUsrBooking, setShowUsrBooking] = useState(true);
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
@@ -73,7 +73,7 @@ const Dashboard = ({ token }) => {
     } else {
       navigate('/home');
     }
-  }, [token]); // Fetch user data when token changes
+  }, [token, navigate]); // Fetch user data when token changes
 
   useEffect(() => {
     
@@ -103,7 +103,7 @@ const Dashboard = ({ token }) => {
   const handleBooking = (place) => {
     setShowBookingForm(true); // Show the booking form
     setShowPlaces(false);
-    setUsrDisplay(false);
+    //setUsrDisplay(false);
     setShowUsrBooking(false);
     setSelectedPlace(place); // Set the selected place
   };

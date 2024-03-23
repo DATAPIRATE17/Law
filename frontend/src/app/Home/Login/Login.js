@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { FaUser, FaLock } from 'react-icons/fa';
 import { RiEyeFill, RiEyeOffFill } from 'react-icons/ri';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faAnglesLeft } from '@fortawesome/free-solid-svg-icons';
 
 
 const Login = ({ setToken, toggleLoginForm }) => { // Receive toggleLoginForm as a prop
@@ -82,7 +83,9 @@ const Login = ({ setToken, toggleLoginForm }) => { // Receive toggleLoginForm as
           Login
         </button>
         {error && <p className="error-message">{error}</p>}
-        <button className="close-btn" onClick={toggleLoginForm}><span>&gt;</span></button> {/* Close button with ">" icon */}
+        <button className="close-btn" onClick={toggleLoginForm}>
+  <FontAwesomeIcon icon={faAnglesLeft} />
+</button>
       </form>
     </div>
   );

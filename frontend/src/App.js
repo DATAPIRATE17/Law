@@ -5,8 +5,6 @@ import 'animate.css/animate.min.css';
 import './App.css';
 
 import Home from './app/Home/Home';
-import Login from './app/Home/Login/Login'
-import Register from './app/Home/Register/Register'
 import Dashboard from './app/DashBoard/DashBoard';
 import SDashboard from './app/DashBoard/SDashBoard';
 import BookingData from './app/Booking/BookingData';
