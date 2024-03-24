@@ -5,19 +5,17 @@ const cookieParser = require('cookie-parser');
 const authRouter = require('./routes/auth');
 const placesRouter=require('./routes/places');
 const bookingRouter = require('./routes/booking');
-
 const cors = require('cors'); // Import the cors package
 const app = express(); // Define app here
 require('dotenv').config();
-console.log(process.env.DB);
+// console.log(process.env.DB);
 
 const PORT = process.env.PORT ;
 const DB = process.env.DB;
-const FRONTEND_URL = process.env.FRONT_END_URL;
-
+const FRONTEND_URL = "http://localhost:3000";
 // Use the cors middleware
-app.use(cors({
-  origin: FRONTEND_URL, // Update with your frontend URL
+app.use(cors({ // Update with your frontend URL
+  origin: FRONTEND_URL,
   credentials: true
 }));
 

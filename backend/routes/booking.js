@@ -3,6 +3,13 @@ const Booking = require('../models/booking');
 const Place = require('../models/places');
 const checkAuth = require('../middleware/check-auth');
 const router = express.Router();
+const twilio = require('twilio');
+require('dotenv').config();
+const TWILIO_ACCOUNT_SID = process.env.TWILIO_ACCOUNT_SID;
+const TWILIO_AUTH_TOKEN = process.env.TWILIO_AUTH_TOKEN;
+const TWILIO_PHONE_NUMBER = process.env.TWILIO_PHONE_NUMBER;
+console.log(TWILIO_ACCOUNT_SID);
+const client = twilio(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN);
 
 // Route to book a slot in a place for a specific period
 router.post('/bookings',checkAuth, async (req, res) => {
@@ -24,6 +31,15 @@ router.post('/bookings',checkAuth, async (req, res) => {
 
         const newBooking = new Booking({ userId, placeId, phno, address, startSlot, endSlot });
         await newBooking.save();
+        const phoneNumber = `+91${phno}`;
+        client.messages
+            .create({
+                body: 'Your booking has been confirmed.',
+                from: TWILIO_PHONE_NUMBER, // Twilio phone number
+                to: phoneNumber // Indian phone number
+            })
+            .then(message => console.log(message.sid))
+            .catch(error => console.error(error));
         place.slot -= 1;
         await place.save();
 
@@ -44,7 +60,7 @@ router.get('/bookings/user/:userId', async (req, res) => {
         const userId = req.params.userId;
         console.log(userId);
         const userBookings = await Booking.find({ userId }).populate('placeId');
-        console.log(userBookings);
+        // console.log(userBookings);
         res.status(200).json(userBookings);
     } catch (error) {
         console.error(error);
@@ -63,7 +79,7 @@ router.get('/bookings/place/:staffId', async (req, res) => {
         }
 
         const placeBookings = await Booking.find({ placeId: place._id }).populate('userId').populate('placeId');
-        console.log(placeBookings)
+        // console.log(placeBookings)
         res.status(200).json(placeBookings);
     } catch (error) {
         console.error(error);
