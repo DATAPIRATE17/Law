@@ -27,13 +27,9 @@ const SDashboard = ({ token }) => {
                     if (staffBookingsResponse.ok) {
                         const bookingsData = await staffBookingsResponse.json();
                         setPlaceBookings(bookingsData);
-                        // console.log(placeBookings)
-                        
-                    
                     } else {
                         console.error('Error fetching staff bookings:', staffBookingsResponse.statusText);
                     }
-
                 } else {
                     navigate('/home');
                 }
@@ -49,7 +45,7 @@ const SDashboard = ({ token }) => {
             navigate('/home');
         }
     }, [navigate, token]);
-    // console.log(placeBookings.placeId.name)
+
     return (
         <div>
             <h2>Dashboard</h2>
@@ -62,23 +58,37 @@ const SDashboard = ({ token }) => {
             )}
 
             <h3>Your Bookings</h3>
-            <ul>
-                {placeBookings && placeBookings.map(booking => (
-                    <li key={booking._id}>
-                        <div>
-                            <p>User Name: {booking.userId.name}</p>
-                            <p>User Email: {booking.userId.email}</p>
-                            <p>Place Name: {booking.placeId.name}</p>
-                            
-                            <p>User Aadhar: {booking.userId.aadhar}</p>
-                            <p>Start Slot: {new Date(booking.startSlot).toLocaleString()}</p>
-                            <p>End Slot: {new Date(booking.endSlot).toLocaleString()}</p>
-                            <p>Phone Number: {booking.phno}</p>
-                            <p>Address: {booking.address}</p>
-                        </div>
-                    </li>
-                ))}
-            </ul>
+            <div className="overflow-x-auto">
+                <table className="table">
+                    {/* head */}
+                    <thead>
+                        <tr>
+                            <th>User Name</th>
+                            <th>Email</th>
+                            <th>Place</th>
+                            <th>Aadhar</th>
+                            <th>Start Slot</th>
+                            <th>End Slot</th>
+                            <th>Phone Number</th>
+                            <th>Address</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {placeBookings.map((booking, index) => (
+                            <tr key={index}>
+                                <td>{booking.userId.name}</td>
+                                <td>{booking.userId.email}</td>
+                                <td>{booking.placeId.name}</td>
+                                <td>{booking.userId.aadhar}</td>
+                                <td>{new Date(booking.startSlot).toLocaleString()}</td>
+                                <td>{new Date(booking.endSlot).toLocaleString()}</td>
+                                <td>{booking.phno}</td>
+                                <td>{booking.address}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
         </div>
     );
 }

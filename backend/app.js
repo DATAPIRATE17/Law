@@ -11,9 +11,9 @@ const app = express(); // Define app here
 require('dotenv').config();
 console.log(process.env.DB);
 
-const PORT = 8080;
-const DB = 'mongodb+srv://hariprasadrajan2003:ca9FlUfv7cFneTq8@cluster0.ugr8oj0.mongodb.net/test';
-const FRONTEND_URL = 'http://localhost:3000'
+const PORT = process.env.PORT ;
+const DB = process.env.DB;
+const FRONTEND_URL = process.env.FRONT_END_URL;
 
 // Use the cors middleware
 app.use(cors({

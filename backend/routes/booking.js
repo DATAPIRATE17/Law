@@ -12,7 +12,7 @@ router.post('/bookings',checkAuth, async (req, res) => {
         // Check if the user has already booked the slots for the specified period
         const existingBooking = await Booking.findOne({ userId });
         if (existingBooking) {
-            return res.status(400).json({ message: 'You have already booked this slot' });
+            return res.status(400).json({ message: 'You have already booked a slot' });
         }
 
         const place = await Place.findById(placeId);

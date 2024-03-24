@@ -12,7 +12,7 @@ res.json({ message: 'You are authenticated', userData });
 
 router.post('/signup', async (req, res) => {
   try {
-    const { name, email, aadhar, password, phone,userType } = req.body;
+    const { name, email, aadhar, password,userType } = req.body;
     const existingUser = await User.findOne({ email });
 
     if (existingUser) {
@@ -20,7 +20,7 @@ router.post('/signup', async (req, res) => {
     }
     const salt = await bcrypt.genSalt(Number(process.env.SALT));
     const hashedPassword = await bcrypt.hash(password, salt);
-    const newUser = new User({ name, email, aadhar, password: hashedPassword , phone, userType});
+    const newUser = new User({ name, email, aadhar, password: hashedPassword , userType});
     const userdetails = await newUser.save();
     
     res.status(201).json({ message: 'User created successfully' , userdetails});

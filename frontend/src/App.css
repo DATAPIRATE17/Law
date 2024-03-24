@@ -2,7 +2,7 @@
 
 body {
   background: rgb(2,0,36);
-  background: linear-gradient(194deg, rgba(2,0,36,1) 33%, rgba(37,193,230,1) 100%, rgba(0,212,255,1) 100%);/* Light gray */
+  background: linear-gradient(194deg, rgba(2,0,36,1) 33%, #25c1e6 100%, rgba(0,212,255,1) 100%);/* Light gray */
   font-family: Arial, sans-serif; /* Set a common font family */
 }
 
@@ -43,6 +43,8 @@ font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans
 
 
 }
+
+
 
 button {
   background-color: #bd6a9d; /* Blue */

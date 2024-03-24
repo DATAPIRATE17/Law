@@ -108,8 +108,10 @@
   .places-list li {
     flex: 1; /* Each item can grow */
     min-width: 250px; /* Minimum width of each item, adjust as needed */
+    max-width: 250px; /* Maximum width of each item, adjust as needed */
     list-style: none; /* Remove default list styling */
   }
+  
   
   .places-list li div {
     width: 100%; /* Ensure the content takes up the full width */
@@ -243,22 +245,26 @@ margin-bottom: 55px;
 }
 
 .dropdown-menu {
-  position: absolute;
-  top: calc(100% + 10px); /* Position the dropdown menu below the welcome-profile container */
-  right: 0;
-  background-color: transparent;
-  border: 1px solid #ccc;
+  background-color:rgb(2,0,36); /* Adjust transparency for a clearer effect */
+  border: 1px solid rgba(255, 255, 255, 0.5); /* Adjust border transparency */
+  border-radius: 10px; /* Rounded corners */
   padding: 10px;
   z-index: 1000;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* Add shadow effect */
   display: none; /* Initially hide the dropdown menu */
+ 
 }
 
-/* Show dropdown menu when hovering over the welcome-profile container */
-.welcome-profile-container:hover .dropdown-menu {
+/* Show dropdown menu when it's active */
+.dropdown-menu.active {
   display: block;
 }
 
 .dropdown-menu button {
+  width: 90%; /* Set a fixed width for all dropdown buttons */
+}
+
+/* own-menu button {
   display: block;
   width: 100%;
   padding: 5px;
@@ -266,4 +272,31 @@ margin-bottom: 55px;
   background-color: #bd6a9d; 
   border: none;
   cursor: pointer;
+} */
+
+#butt{
+    position: absolute;
+    top: -29px;
+    left: 0;
+ 
+}
+
+#butt:hover{
+background-color: #333;
+
+}
+
+
+#buttt{
+margin-top: 5px;
+}
+
+
+@media only screen and (max-width: 600px) {
+  .logo{
+  
+    visibility: hidden;
+    
+  
+  }
 }

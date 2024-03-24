@@ -4,6 +4,7 @@ import { RiEyeFill, RiEyeOffFill } from 'react-icons/ri';
 import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAnglesLeft } from '@fortawesome/free-solid-svg-icons';
+import {toast} from 'react-toastify';
 
 
 const Login = ({ setToken, toggleLoginForm }) => { // Receive toggleLoginForm as a prop
@@ -34,17 +35,18 @@ const Login = ({ setToken, toggleLoginForm }) => { // Receive toggleLoginForm as
         throw new Error(data.message);
       }
       setToken(data.token); // Set token in parent component
-      console.log('Login successful');
-      console.log(data.userType)
+     
       if(data.userType === 'staff'){
-        console.log('Login successful admin');
+        toast.success('Staff Login successful');
         navigate('/sdashboard'); // Redirect to dashboard after successful login
       }
-      else
-        navigate('/dashboard'); // Redirect to dashboard after successful login
-
+      else{
+        toast.success('User Login successful');
+        navigate('/dashboard'); // Redirect to dashboard after successful login}
+      }
+      
     } catch (error) {
-      console.error('Login failed:', error.message);
+      toast.error(error.message)
       setError('Invalid email or password');
     }
   };
@@ -55,6 +57,9 @@ const Login = ({ setToken, toggleLoginForm }) => { // Receive toggleLoginForm as
 
   return (
     <div className="login-container">
+           <button id="buttt" className="close-btn" onClick={toggleLoginForm}>
+                <FontAwesomeIcon icon={faAnglesLeft} />
+          </button>
       <form onSubmit={handleSubmit} className="login-form">
         <div className="input-group">
           <span className="input-icon">
@@ -83,9 +88,14 @@ const Login = ({ setToken, toggleLoginForm }) => { // Receive toggleLoginForm as
           Login
         </button>
         {error && <p className="error-message">{error}</p>}
-        <button className="close-btn" onClick={toggleLoginForm}>
-  <FontAwesomeIcon icon={faAnglesLeft} />
-</button>
+        
+{/* <button id="buttt" className="close-btn" onClick={toggleLoginForm}>
+              <h2 className="logo" id="data">
+            SHE-GUARDIANS
+                </h2>        
+        </button> */}
+   
+
       </form>
     </div>
   );

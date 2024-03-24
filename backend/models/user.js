@@ -31,10 +31,6 @@ const userSchema = mongoose.Schema({
       message: "Please enter a valid aadhar number",
     },
   },
-  phone: {
-    required: true,
-    type: String,
-  },
   password: {
     required: true,
     type: String,

@@ -5,27 +5,62 @@ import 'react-datepicker/dist/react-datepicker.css'; // Make sure to import CSS 
 import './DashBoard.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
+import {toast} from 'react-toastify';
 
 
-const Header = ({ handleLogout, handleViewProfile, fetchUserBookings, userName }) => {
+const Header = ({ handleLogout, handleViewProfile, fetchUserBookings, userName, handleBack }) => {
+  const [dropdownOpen, setDropdownOpen] = useState(false); // State to manage dropdown visibility
+
+  const toggleDropdown = () => {
+    setDropdownOpen(!dropdownOpen);
+  };
+
   return (
     <div className="header">
-      {/* Welcome message and profile icon */}
+      {/* Welcome message, profile icon, and back button */}
+      
+        <button id="butt" className="close-btn" onClick={handleBack}>
+              <h2 className="logo" id="data">
+            SHE-GUARDIANS
+                </h2>        
+        </button>
       <div className="welcome-profile-container">
         <span className="welcome-text">Welcome, {userName}</span>
-        <span className="profile-icon" onClick={handleViewProfile}>
+        <span className="profile-icon" onClick={toggleDropdown}>
           <FontAwesomeIcon icon={faUser} />
         </span>
+        {/* Back button */}
         {/* Dropdown menu for logout and view profile */}
-        <div className="dropdown-menu">
+        <div className={`dropdown-menu ${dropdownOpen ? 'active' : ''}`}>
           <button onClick={handleLogout}>Logout</button>
           <button onClick={handleViewProfile}>View Profile</button>
           <button onClick={fetchUserBookings}>My Bookings</button>
         </div>
       </div>
     </div>
+
+//     <div className="navbar bg-base-300 rounded-box">
+// <div className="flex-1 px-2 lg:flex-none">
+//   <a className="text-lg font-bold">SHE GUARDIANS</a>
+// </div> 
+// <div className="flex justify-end flex-1 px-2">
+//   <div className="flex items-stretch">
+//     {/* <a className="btn btn-ghost rounded-btn">Button</a> */}
+//     <div className="dropdown dropdown-end">
+//       <div tabIndex={0} role="button" className="btn btn-ghost rounded-btn">Welcome {userName}<span className="profile-icon" onClick={handleViewProfile}>
+//     <FontAwesomeIcon icon={faUser} /></span></div>
+//       <ul tabIndex={0} className="menu dropdown-content z-[1] p-2 shadow bg-base-100 rounded-box w-52 mt-4">
+//       <li><button onClick={handleLogout}>Logout</button></li>
+//     <li><button onClick={handleViewProfile}>View Profile</button></li>
+//     <li><button onClick={fetchUserBookings}>My Bookings</button></li>
+//       </ul>
+//     </div>
+//   </div>
+// </div>
+// </div>
   );
 };
+
 
 
 const Dashboard = ({ token }) => {
@@ -75,6 +110,7 @@ const Dashboard = ({ token }) => {
     }
   }, [token, navigate]); // Fetch user data when token changes
 
+
   useEffect(() => {
     
     const fetchPlacesData = async () => {
@@ -101,7 +137,7 @@ const Dashboard = ({ token }) => {
 
 
   const handleBooking = (place) => {
-    setShowBookingForm(true); // Show the booking form
+    setShowBookingForm(true); 
     setShowPlaces(false);
     //setUsrDisplay(false);
     setShowUsrBooking(false);
@@ -129,12 +165,21 @@ const Dashboard = ({ token }) => {
 
     const data = await response.json();
     if (response.ok) {
+      toast.success('Booking successful, check my bookings to view')
       console.log('Booking successful:', data);
       setUserBookings([...userBookings, data]);
       setShowBookingForm(false);
       setShowPlaces(true); // Hide the booking form after successful booking
       setShowUsrBooking(true);
+      
+      // Reset form fields
+      setStartDate(new Date());
+      setEndDate(new Date());
+      setPhno('');
+      setAddress('');
+
     } else {
+      toast.error(data.message)
       console.error('Error booking:', data);
     }
   };
@@ -149,7 +194,22 @@ const Dashboard = ({ token }) => {
 
       if (userBookingsResponse.ok) {
         const userBookingsData = await userBookingsResponse.json();
-        setUserBookings(userBookingsData);
+
+        if (userBookingsData.length === 0) {
+          // No bookings available
+          toast.error('No bookings available for this user.');
+          setShowPlaces(false); // Show the places
+          setShowBookingForm(false); // Hide the booking form
+          setShowUsrBooking(false); // Hide the user bookings
+          setViewProfile(false);
+        } else {
+          // Bookings available
+          setUserBookings(userBookingsData);
+          setShowPlaces(false); // Hide the places
+          setShowBookingForm(false); // Hide the booking form
+          setShowUsrBooking(true); // Show the user bookings
+          setViewProfile(false);
+        }
       } else {
         console.error('Error fetching user bookings:', userBookingsResponse.statusText);
       }
@@ -176,10 +236,12 @@ const Dashboard = ({ token }) => {
     }
   };
 
-  // // Handle view profile
-  // const handleViewProfile = () => {
-  //   navigate('/viewprofile');
-  // };
+  const handleBack = () => {
+    setShowBookingForm(false); 
+    setShowPlaces(true);
+    setShowUsrBooking(false);
+    setViewProfile(false);
+  };
 
   const handleViewProfile = () => {
     setViewProfile(true);
@@ -195,6 +257,7 @@ const Dashboard = ({ token }) => {
       handleViewProfile={handleViewProfile}
       fetchUserBookings={fetchUserBookings}
       userName={user && user.name}
+      handleBack={handleBack}
     />
     <br />
 
@@ -212,8 +275,8 @@ const Dashboard = ({ token }) => {
       </div>
     ) : (
       <div>
-  <h3 id="place">Available Places</h3>
   {/* <div className="card w-96 bg-base-100 shadow-xl"> */}
+  {showPlaces && <h3 id="place">Available Places</h3>} {/* Move the heading inside the condition */}
   <div className="card-body">
     <ul className="places-list">
       {showPlaces && places.map(place => (
@@ -247,7 +310,7 @@ const Dashboard = ({ token }) => {
       </li>
     ))}
   </ul> */}
-  <button onClick={fetchUserBookings}>Check My Bookings</button>
+  {/* <button onClick={fetchUserBookings}>Check My Bookings</button> */}
   {showBookingForm && (
     <div>
       <h3>Booking Form</h3>
@@ -284,11 +347,11 @@ const Dashboard = ({ token }) => {
           onChange={(e) => setAddress(e.target.value)}
           required
         />
+        <br />
         <button type="submit">Confirm Booking</button>
       </form>
     </div>
   )}
-  <h3>Your Bookings</h3>
   <ul>
     {showUsrBooking && userBookings && userBookings.map(booking => (
       <li key={booking._id}>
@@ -301,7 +364,8 @@ const Dashboard = ({ token }) => {
         </div>
       </li>
     ))}
-  </ul></div>
+  </ul>
+  </div>
     )}
   </div>
   );
