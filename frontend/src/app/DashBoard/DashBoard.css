@@ -12,6 +12,78 @@
     margin-bottom: 20px;
   }
   
+
+  
+.card-outer-container {
+	background-color: #270e43;
+	font-family: Montserrat, sans-serif;
+	
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+
+	min-height: 100vh;
+	margin: 0;
+  
+}
+	
+	
+p {
+	font-size: 18px;
+	line-height: 21px;
+}
+
+.card-container {
+	background-color: white;
+	border-radius: 15px;
+	box-shadow: 0px 10px 20px -10px rgba(0,0,0,0.75);
+/* 	color: #B3B8CD; */
+	padding-top: 30px;
+	position: relative;
+	width: 350px;
+	max-width: 100%;
+	text-align: center;
+}
+
+.edit-symbol {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.imp-data {
+	background-color: #26a69a;
+	text-align: left;
+	padding: 30px;
+	margin-top: 30px;
+	border-radius: 5px;
+}
+
+#em{
+  color: black;
+}
+#emm{
+  color: black;
+}
+	
+.imp-data p {
+	border: 1px solid #2D2747;
+	border-radius: 5px;
+	display: block;
+/* 	text-align: center; */
+	font-size: 20px;
+	margin: 10px 7px 7px 10;
+	padding: 20px;
+}
+	
+	.icon-style {
+		height: 20px;
+		margin-right: 10px;
+	}
+	
   .user-info {
     margin-bottom: 20px;
   }
